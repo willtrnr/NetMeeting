@@ -1,0 +1,56 @@
+﻿@model NetMeeting.Models.LoginModel
+@{
+  ViewBag.CurrentPage = "login";
+  ViewBag.Title = "Log in";
+}
+<div class="row">
+  <div class="span12">
+    <div class="page-header">
+      <h1>@ViewBag.Title.</h1>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span6">
+    <h2>Use a local account to log in.</h2>
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" })) {
+      @Html.AntiForgeryToken()
+      @Html.ValidationSummary(true)
+
+      <fieldset>
+        <legend>Log in Form</legend>
+
+        <div class="control-group">
+          @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+          <div class="controls">
+            @Html.TextBoxFor(m => m.UserName)
+            <span class="inline-help">@Html.ValidationMessageFor(m => m.UserName)</span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+          <div class="controls">
+            @Html.PasswordFor(m => m.Password)
+            <span class="inline-help">@Html.ValidationMessageFor(m => m.Password)</span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            @Html.CheckBoxFor(m => m.RememberMe)
+            @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox inline" })
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Log in</button>
+        </div>
+      </fieldset>
+    }
+  </div>
+  <div class="span6">
+    <h2>Use another service to log in.</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+  </div>
+</div>
