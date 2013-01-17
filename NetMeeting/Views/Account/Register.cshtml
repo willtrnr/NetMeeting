@@ -7,35 +7,39 @@
 <div class="row">
   <div class="span12">
     <div class="page-header">
-      <h1>@ViewBag.Title.</h1>
+      <h1>@ViewBag.Title</h1>
     </div>
     <h2>Create a new account.</h2>
 
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" })) {
       @Html.AntiForgeryToken()
-      @Html.ValidationSummary()
 
       <fieldset>
         <legend>Registration Form</legend>
-        
-        <div class="control-group">
+
+        @if (!ViewData.ModelState.IsValid) { @Html.ValidationSummary(false, null, new { @class = "alert alert-block alert-error" }) }
+
+        <div class="control-group@((!ViewData.ModelState.IsValidField("UserName")) ? " error" : "")">
           @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
           <div class="controls">
             @Html.TextBoxFor(m => m.UserName)
+            @Html.ValidationMessageFor(m => m.UserName, null, new { @class = "help-inline" })
           </div>
         </div>
 
-        <div class="control-group">
+        <div class="control-group@((!ViewData.ModelState.IsValidField("Password")) ? " error" : "")">
           @Html.LabelFor(m => m.Password, new { @class = "control-label" })
           <div class="controls">
             @Html.PasswordFor(m => m.Password)
+            @Html.ValidationMessageFor(m => m.Password, null, new { @class = "help-inline" })
           </div>
         </div>
 
-        <div class="control-group">
+        <div class="control-group@((!ViewData.ModelState.IsValidField("ConfirmPassword")) ? " error" : "")">
           @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
           <div class="controls">
             @Html.PasswordFor(m => m.ConfirmPassword)
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, null, new { @class = "help-inline" })
           </div>
         </div>
 

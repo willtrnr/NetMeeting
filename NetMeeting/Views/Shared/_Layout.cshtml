@@ -24,14 +24,16 @@
   </style>
   <link href="@Url.Content("~/Content/css/bootstrap-responsive.min.css")" rel="stylesheet">
   <link href="@Url.Content("~/Content/css/font-awesome.min.css")" rel="stylesheet">
+  <link href="@Url.Content("~/Content/css/zocial.css")" rel="stylesheet">
   <!--[if IE 7]>
   <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
   <![endif]-->
+  @RenderSection("styles", false)
+
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  @RenderSection("styles", false);
 
   <!-- Fav and touch icons -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="@Url.Content("~/Content/ico/apple-touch-icon-144-precomposed.png")">
@@ -54,11 +56,10 @@
         <div class="nav-collapse collapse">
           <ul class="nav">
             @NavBarLink("home", "Home", "home", "Index", "Home")
-            @NavBarLink("about", "About", null, "About", "Home")
             @if (Request.IsAuthenticated) {
               @NavBarLink("logout", "Log out", "signout", "Logout", "Account")
             } else {
-              @NavBarLink("register", "Register", null, "Register", "Account")
+              @NavBarLink("register", "Register", "asterisk", "Register", "Account")
               @NavBarLink("login", "Log in", "signin", "Login", "Account")
             }
           </ul>

@@ -25,6 +25,13 @@ namespace NetMeeting.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
         public string UserName { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public char Gender { get; set; }
+        public DateTime Birthday { get; set; }
+        public string Expectations { get; set; }
+        public string Interests { get; set; }
     }
 
     public class RegisterExternalLoginModel
