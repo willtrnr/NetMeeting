@@ -1,9 +1,9 @@
 ﻿@helper NavBarLink(string linkName, string linkText, string linkIcon, string actionName, string controllerName)
 {
   if (ViewBag.CurrentPage == linkName) {
-  <li class="active"><a href="@Url.Action(actionName, controllerName)">@if (linkIcon != null) {<i class="icon-@linkIcon"></i>} @linkText</a></li>
+  <li class="active"><a href="@Url.Action(actionName, controllerName)">@if (linkIcon != null) {<i class="icon-@linkIcon"></i> }@linkText</a></li>
   } else {
-  <li><a href="@Url.Action(actionName, controllerName)">@if (linkIcon != null) {<i class="icon-@linkIcon"></i>} @linkText</a></li>
+  <li><a href="@Url.Action(actionName, controllerName)">@if (linkIcon != null) {<i class="icon-@linkIcon"></i> }@linkText</a></li>
   }
 }
 
@@ -57,6 +57,7 @@
           <ul class="nav">
             @NavBarLink("home", "Home", "home", "Index", "Home")
             @if (Request.IsAuthenticated) {
+              @NavBarLink("manage", "My Account", "user", "Manage", "Account")
               @NavBarLink("logout", "Log out", "signout", "Logout", "Account")
             } else {
               @NavBarLink("register", "Register", "asterisk", "Register", "Account")
@@ -64,7 +65,6 @@
             }
           </ul>
         </div>
-        <!--/.nav-collapse -->
       </div>
     </div>
   </div>
@@ -72,7 +72,6 @@
   <div class="container">
     @RenderBody()
   </div>
-  <!-- /container -->
 
   <!-- JavaScript
     ================================================== -->
